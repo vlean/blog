@@ -18,6 +18,7 @@
 - [Excel VBA的一些书籍资源,百度网盘](https://pan.baidu.com/s/1c28fQqW)
 - [Excel 函数速查手册](https://support.office.com/zh-cn/article/Excel-%E5%87%BD%E6%95%B0%EF%BC%88%E6%8C%89%E7%B1%BB%E5%88%AB%E5%88%97%E5%87%BA%EF%BC%89-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb?ui=zh-CN&rs=zh-CN&ad=CN) 
 - [VBA的一些使用心得](http://www.cnblogs.com/techyc/p/3355054.html)
+- [VBA函数参考](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
 
 ## 0x01 语法说明
 
@@ -157,9 +158,10 @@ Range("A4:C6").Value= arr3    '将arr3中的数据写入到A4:C6中的区域
 > 补充
 > [VBA 内置函数列表](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
 
-###1.3 运算符
+### 1.3 运算符
 
 运算符的作用是对数据进行操作，像加减乘除等。这块不再具体说明，列一下vba中常用的运算符。
+
 |运算符|作用|示例|
 |----|----|----|
 |**算术运算符**|
@@ -198,7 +200,7 @@ Range("A4:C6").Value= arr3    '将arr3中的数据写入到A4:C6中的区域
 "这是一个demo3" Like "*demo#" = True '#号表示匹配任意数字
 ```
 
-###1.4 语句结构
+### 1.4 语句结构
 
 程序通常都是顺序依次执行的。语句结构用来控制程序执行的步骤，一般有`选择`语句、`循环`语句。
 
@@ -209,35 +211,35 @@ Range("A4:C6").Value= arr3    '将arr3中的数据写入到A4:C6中的区域
 'If选择可以嵌套使用
 '常用的三种形式
 If 10>3 Then
-	操作1'执行这一步
+  操作1'执行这一步
 End If
 
 If 1>2 Then
-	操作1
+  操作1
 Else
-	操作2'执行这一步
+  操作2'执行这一步
 End If
 
 If 10>3 Then
-	If 1>2 Then
-		操作1
-	Else
-		操作2'执行这一步
-	End If
+  If 1>2 Then
+    操作1
+  Else
+    操作2'执行这一步
+  End If
 Else
-	操作3
+  操作3
 End If
 
 'Select...Case..多选一
 Dim Length As Integer
 Length=10
 Select Length
-	Case Is >=8
-		操作1 '执行这一步
-	Case Is >20
-		操作2
-	Case Else
-		操作3
+  Case Is >=8
+    操作1 '执行这一步
+  Case Is >20
+    操作2
+  Case Else
+    操作3
 End Select
 ```
 
@@ -248,7 +250,7 @@ End Select
 'For 循环变量 = 初始值 To 终值 Step 步长
 Dim i As Integer
 For i = 1 To 10 Step 2 '设定i从1到10，每次增加2，总共执行5次
-	操作1   '可以通过设定 Exit For 退出循环
+  操作1   '可以通过设定 Exit For 退出循环
 Next i
 
 'For Each..循环，又称遍历
@@ -257,7 +259,7 @@ Dim arr
 Dim i As Integer
 arr = Array(1,2,3,4,5)
 For Each i In arr '定义变量i，遍历arr数组
-	操作1
+  操作1
 Next i
 
 'Do..While循环
@@ -265,14 +267,14 @@ Next i
 Dim i As Integer
 i=1
 Do While i<5  '循环5次
-	i=i+1
+  i=i+1
 Loop
 
 '将判断条件后置的Do..While
 Dim i As Integer
 i=1
 Do
-	i=i+1
+  i=i+1
 Loop While i<5 '循环4次
 
 'Do Until 直到..循环
@@ -280,14 +282,14 @@ Loop While i<5 '循环4次
 Dim i As Integer
 i=5
 Do Util i<1  
-	i=i-1
+  i=i-1
 Loop
 
 '后置的Do Until
 Dim i As Integer
 i=5
 Do 
-	i=i-1
+  i=i-1
 Loop Util i<1  
 ```
 
@@ -303,7 +305,7 @@ WorkSheets("表1").Range("A1").Font.ColorIndex=3
 
 '使用with
 With WorkSheets("表1").Range("A1").Font
-	.Name = "仿宋"
+        .Name = "仿宋"
 	.Size = 12
 	.ColorIndex =3
 End With
@@ -317,7 +319,7 @@ End With
 **Sub**
 ```vba
 [Private|Public] [Static] Sub 过程名([参数列表 [As 数据类型]])
-	[语句块]
+    [语句块]
 End Sub
 '[Private|Public]定义过程的作用范围
 '[Static]定义过程是否为静态
@@ -332,8 +334,8 @@ End Sub
 vba内部提供了大量的函数，也可以通过`Function`来定义函数，实现个性化的需求。
 ```vba
 [Public|private] [Static] Function 函数名([参数列表 [As 数据类型]]) [As 数据类型]
-	[语句块]
-	[函数名=过程结果]
+    [语句块]
+    [函数名=过程结果]
 End Function
 ```
 使用函数完成上面的栗子：
@@ -375,7 +377,7 @@ Excel中的每个单元格，工作簿都是可以操作的对象；可以对对
 
 举个单元格对象`Range`的例子，[Range的官方文档](https://msdn.microsoft.com/zh-cn/library/office/ff838238.aspx)
 
-### 对象
+### 2.1对象
 每个对象都有属性和方法，属性一般为对象的特征，方法一般为对象可以执行的操作或动作。
 例如将鸟当一个对象，那颜色、体重就是它的属性，飞、吃饭就是它的方法了。
 

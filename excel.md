@@ -15,7 +15,7 @@
 - [Excel VBA 参考,官方文档,适用2013及以上](https://msdn.microsoft.com/zh-cn/library/ee861528.aspx)
 - [Excel宏教程 (宏的介绍与基本使用)](http://blog.csdn.net/lyhdream/article/details/9060801)
 - [Excel2010中的VBA入门,官方文档](https://msdn.microsoft.com/zh-cn/library/office/ee814737(v=office.14).aspx)
-- [Excel VBA的一些书籍资源,百度网盘](https://pan.baidu.com/s/1c28fQqW)
+- [Excel VBA的一些书籍资源,百度网盘](https://pan.baidu.com/s/1i5QSIX3)
 - [Excel 函数速查手册](https://support.office.com/zh-cn/article/Excel-%E5%87%BD%E6%95%B0%EF%BC%88%E6%8C%89%E7%B1%BB%E5%88%AB%E5%88%97%E5%87%BA%EF%BC%89-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb?ui=zh-CN&rs=zh-CN&ad=CN) 
 - [VBA的一些使用心得](http://www.cnblogs.com/techyc/p/3355054.html)
 - [VBA函数参考](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
@@ -356,8 +356,9 @@ End Function
 
 参数定义时，使用`ByVal`关键字定义传值，子过程中对参数的修改不会影响到原有变量的内容。
 默认情况下，过程是按引用方式传递参数的。在这个过程中对参数的修改会影响到原有的变量。
+也可以使用`ByRef`关键字显示的声明按引用传参。
 ```vba
-Sub St1(ByVal n As Integer,range)
+Sub St1(ByVal n As Integer,ByRef range)
 	...
 End SUb
 ```
@@ -369,6 +370,105 @@ End SUb
 - 在很长的语句中使用`_`来分割成多行
 - 在有很多嵌套判断中，代码的可读性会变得很差，一般讲需要返回的内容及时返回，减少嵌套
 - `Sub`中默认按引用传递参数，所以注意使用，一般不要对外面的变量进行修改，讲封装保留在内部
+
+
+### 1.7示例
+
+举个排序的栗子，要对`A1:A20`的单元格区域进行排序，区域内的内容为1-100的随机整数，规则是大于50的倒序排列，小于50的正序排列。将结果显示在`B1:B20`的区域里。
+
+在这个栗子中，首先定义一个`Sub`过程来随机生成`A1:A20`区域的内容。
+代码如下:
+```vba
+'创建随机整数，并赋值
+Sub createRandom(times As Integer)
+  Dim num As Integer
+  Dim arr() As Integer
+  ReDim arr(times)
+  
+  For num = 1 To times
+    Randomize (1) '初始化随机数
+    arr(num) = Rnd(1) * 10000 \ 100 'Rnd随机数函数生成0~1的浮点数
+    '上面使用了运算符进行取整，也可以根据需求使用vba内部的取整函数达到同样的效果
+    'arr(num) = Int(Rnd(1) * 100)
+    'arr(num) = Round(Rnd(1) * 100)
+    range("A" & num) = arr(num)
+  Next num
+End Sub
+
+'自定义排序
+Function defSort(rgs) As Variant
+  Dim arr() As Integer
+  Dim total As Integer
+  Dim rg
+  Dim st As Integer '数组开始标记
+  Dim ed As Integer '数组结束标记
+  
+  Debug.Print "rgs类型:"; TypeName(rgs)
+  total = UBound(rgs)
+  ReDim arr(total)
+  st = 1
+  ed = total
+  
+  '对数组分区
+  For Each rg In rgs
+    If rg > 50 Then
+      arr(ed) = rg
+      ed = ed - 1
+    Else
+      arr(st) = rg
+      st = st + 1
+    End If
+  Next rg
+  
+  Dim i As Integer
+  Dim j As Integer
+  Dim tmp As Integer
+  
+  '冒泡排序
+  For i = 1 To total
+    For j = i To total
+      If arr(i) > 50 And arr(j) > 50 Then '大于50的倒序排列
+        If arr(i) < arr(j) Then
+          tmp = arr(i)
+          arr(i) = arr(j)
+          arr(j) = tmp
+
+          Debug.Print "大于50的"; i; j; tmp '程序运行过程中在立即窗口显示执行内容，用于调试程序
+        End If
+      ElseIf arr(i) <= 50 And arr(j) <= 50 Then '小于50的正序排列
+        If arr(i) > arr(j) Then
+          tmp = arr(i)
+          arr(i) = arr(j)
+          arr(j) = tmp
+                
+          Debug.Print "不大于50的"; i; j; tmp
+        End If
+      Else
+        Exit For
+      End If
+    Next j
+  Next i
+  defSort = arr
+End Function
+
+
+'程序入口
+Sub main()
+  Const SORT_NUM = 20
+  Dim rgs
+  Dim arr
+  
+  createRandom SORT_NUM '初始化待排序区域
+
+  rgs = range("A1:A" & SORT_NUM)
+  arr = defSort(rgs)
+  
+  '循环赋值
+  For i = 1 To SORT_NUM
+    range("B" & i) = arr(i)
+  Next i
+End Sub
+```
 
 
 ## 0x02 对象操作说明

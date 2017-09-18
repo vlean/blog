@@ -371,6 +371,24 @@ End SUb
 - 在有很多嵌套判断中，代码的可读性会变得很差，一般讲需要返回的内容及时返回，减少嵌套
 - `Sub`中默认按引用传递参数，所以注意使用，一般不要对外面的变量进行修改，讲封装保留在内部
 
+- `Dim`和`Set`的区别  [参考](http://blog.csdn.net/nctu_to_prove_safety/article/details/53148962)
+```vba
+'vba中使用Dim设定变量类型，Set将对象引用赋值给变量
+
+'栗子
+'将Range对象赋值给变量rg
+Dim rg As Range  '声明rg为Range对象
+Set rg = Range("A1") '设定rg为Range("A1")的引用，之后操作rg和操作Range("A1")一样了
+
+'如果不使用Set，下面的代码将报错
+Dim rg As Range
+rg = Range("A1")   '这段代码将报错
+
+'在非显示声明rg的前提下，下面的代码将会得到不一样的结果
+rg = Range("A1")  'rg将会是Range("A1")的内容,rg的类型将会是一种基本类型,Integer/String等
+Set rg = Range("A1")   '这种情况下,rg将会是Range对象
+```
+
 
 ### 1.7示例
 

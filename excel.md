@@ -5,11 +5,14 @@
 - [x] 提纲
 - [x] 文档列表
 - [x] 语法说明
+- [ ] VBA界面介绍
 - [ ] 对象操作说明
 - [ ] 参考资料
 - [ ] 若雨化
 
-[TOC]
+## changelog
+- 2017/09/18  补充`Set`&`Dim`;VBA界面介绍
+- 2017/09/16  VBA语法说明
 
 ## 0x00 文档列表
 - [Excel VBA 参考,官方文档,适用2013及以上](https://msdn.microsoft.com/zh-cn/library/ee861528.aspx)

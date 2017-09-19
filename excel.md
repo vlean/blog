@@ -23,6 +23,7 @@
 - [Excel 函数速查手册](https://support.office.com/zh-cn/article/Excel-%E5%87%BD%E6%95%B0%EF%BC%88%E6%8C%89%E7%B1%BB%E5%88%AB%E5%88%97%E5%87%BA%EF%BC%89-5f91f4e9-7b42-46d2-9bd1-63f26a86c0eb?ui=zh-CN&rs=zh-CN&ad=CN) 
 - [VBA的一些使用心得](http://www.cnblogs.com/techyc/p/3355054.html)
 - [VBA函数参考](https://msdn.microsoft.com/zh-cn/library/office/jj692811.aspx)
+- [VBA入门参考,英文](http://analystcave.com/vba-cheat-sheet/)
 
 ## 0x01 语法说明
 

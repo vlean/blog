@@ -516,7 +516,7 @@ Excel中的每个单元格，工作簿都是可以操作的对象；可以对对
 一个集合中调用对象的例子：
 ![Alt text](./1505548422147.png)
 
-举个单元格对象`Range`的例子，[Range的官方文档](https://msdn.microsoft.com/zh-cn/library/office/ff838238.aspx)
+
 
 ### 3.1对象简述
 
@@ -552,6 +552,7 @@ vba中有很多对象，常用的对象如下:
 
 
 ### 3.2 Application对象
+
 
 
 ### 3.3 Range对象

@@ -518,13 +518,20 @@ Excel中的每个单元格，工作簿都是可以操作的对象；可以对对
 
 举个单元格对象`Range`的例子，[Range的官方文档](https://msdn.microsoft.com/zh-cn/library/office/ff838238.aspx)
 
-### 3.1对象介绍
+### 3.1对象简述
 
-每个对象都有属性和方法，属性一般为对象的特征，方法一般为对象可以执行的操作或动作。
-例如将鸟当一个对象，那颜色、体重就是它的属性，飞、吃饭就是它的方法了。
+对象一般包含下面三种特性：
 
-此外，有些对象还有事件，当事件被触发时，就会执行对应的事件方法。
-例如`Workbook`工作簿对象有个`open`事件，当工作簿被打开时，会触发这个事件。
+- 属性
+
+属性表示对象的特征，一般为名词。例如`Workbook.ActiveSheet`表示工作簿当前处于激活状态的工作表对象。
+- 方法
+
+方法表示对象可用的操作或可执行的动作。例如`Workbook.Activate`表示激活工作簿的第一个工作表。
+- 事件
+
+事件表示对象可以被触发的行为，一般触发后会执行对应的代码。例如`Workbook.Activate`表示工作簿中的工作表被激活了，然后执行对应的方法。
+
 下面的代码就是在`Workbook`被打开时，将工作簿最大化的例子。
 
 ```vba
@@ -542,6 +549,7 @@ vba中有很多对象，常用的对象如下:
 |Workbook|代表Excel的工作簿|[文档](https://msdn.microsoft.com/zh-cn/library/ff835568.aspx)|
 |Worksheet|代表Excel的工作表|[文档](https://msdn.microsoft.com/zh-cn/library/ff194464.aspx)|
 |Range|代表Excel的单元格，可以是单个单元格或单元格区域|[文档](https://msdn.microsoft.com/zh-cn/library/office/ff838238.aspx)|
+
 
 ### 3.2 Application对象
 

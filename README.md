@@ -3,6 +3,7 @@
 ## 2017更新计划
 
 - [简明Excel VBA](./excel.md)
+- [Redis实战 笔记](./redis.md)
 
 ## 开源应用
 

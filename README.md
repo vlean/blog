@@ -1,6 +1,11 @@
 # 文档整理
 
-## 2017更新计划
+## TASK
+- [] mq使用和常见问题
+- [] airflow等任务调度
+- [] apollo配置中心
+
+## 2017更新
 
 - [简明Excel VBA](./excel.md)
 - [Redis实战 笔记](./redis.md)

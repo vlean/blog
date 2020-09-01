@@ -1,5 +1,7 @@
 # 文档整理
 
+[![Page Views Count](https://badges.toozhao.com/badges/01EH4NT41A7VSVF232K1PYKCMJ/green.svg)](https://badges.toozhao.com/badges/01EH4NT41A7VSVF232K1PYKCMJ/green.svg "Get your own page views count badge on badges.toozhao.com")
+
 ## TASK
 - [] mq使用和常见问题
 - [] airflow等任务调度
